@@ -86,36 +86,6 @@ The goal of this project is to demonstrate the implementation of machine learnin
 5. **Update Profile:**
    Update your profile information and preferences.
 
-## Project Structure
-
-```
-book-recommendation-system/
-│
-├── app/
-│   ├── static/             # Static files (CSS, JS, images)
-│   ├── templates/          # HTML templates
-│   ├── __init__.py         # Flask app initialization
-│   ├── models.py           # Database models
-│   ├── routes.py           # Flask routes and views
-│   ├── forms.py            # Flask-WTF forms
-│   └── ml/
-│       ├── recommender.py  # Machine learning models
-│       └── utils.py        # Utility functions
-│
-├── data/                   # Dataset files
-│
-├── migrations/             # Database migrations
-│
-├── tests/                  # Unit tests
-│
-├── venv/                   # Virtual environment
-│
-├── requirements.txt        # Python dependencies
-│
-└── README.md               # Project documentation
-```
-
-## Contributing
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
@@ -124,18 +94,3 @@ book-recommendation-system/
 5. Create a pull request.
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgements
-
-- The dataset used in this project was sourced from [Goodreads](https://www.goodreads.com).
-- Thanks to the open-source community for their contributions to libraries and tools used in this project.
-
-## Contact
-
-For any questions or suggestions, please reach out to [your.email@example.com](mailto:your.email@example.com).
-
----
-
-Feel free to modify the content to fit the specifics of your project.
