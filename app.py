@@ -29,35 +29,33 @@ def index():
                            #    year=list(Final_df['Year-Of-Publication'].values)
                            )
 
-
-@app.route('/search', methods=['post'])
+@app.route('/search', methods=['POST'])
 def recomend():
     user_req = request.form.get("user_input")
-    index = np.where(Pivot.index == user_req)[0][0]
-    distances = similarity[index]
+    index = np.where(Pivot.index == user_req)[0]
+    if len(index) == 0:
+        # If no match found, display a message and any 5 images
+        data = None
+        return render_template('nofile.html')
+    else:
+        index = index[0]
+        distances = similarity[index]
+        Top5 = sorted(list(enumerate(distances)),
+                      key=lambda x: x[1], reverse=True)[1:10]
 
-    Top5 = sorted(list(enumerate(distances)),
-                  key=lambda x: x[1], reverse=True)[1:10]
+        data = []
+        for i in Top5:
+            item = []
+            temp_df = Final_df1[Final_df1['Book-Title'] == Pivot.index[i[0]]]
+            item.extend(list(temp_df.drop_duplicates(
+                'Book-Title')['Book-Title'].values))
+            item.extend(list(temp_df.drop_duplicates(
+                'Book-Title')['Book-Author'].values))
+            item.extend(list(temp_df.drop_duplicates(
+                'Book-Title')['Image-URL-M'].values))
 
-    data = []
-    for i in Top5:
-        item = []
-        temp_df = Final_df1[Final_df1['Book-Title'] == Pivot.index[i[0]]]
-        item.extend(list(temp_df.drop_duplicates(
-            'Book-Title')['Book-Title'].values))
-        item.extend(list(temp_df.drop_duplicates(
-            'Book-Title')['Book-Author'].values))
-        item.extend(list(temp_df.drop_duplicates(
-            'Book-Title')['Image-URL-M'].values))
+            data.append(item)
 
-        data.append(item)
-        print(data[0])
-
-    item = []
-    # for i in Top5:
-    #     item.append(Final_df1.iloc[i[0]]
-    #                 [["Book-Title", "Book-Author", "Image-URL-M"]])
-    return render_template('search.html', data=data)
-
+        return render_template('search.html', data=data)
 
 app.run(debug=True)

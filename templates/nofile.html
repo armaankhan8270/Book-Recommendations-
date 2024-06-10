@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Match Found</title>
+  </head>
+  <body>
+    <h1>No match found</h1>
+    <p>
+      Sorry, we couldn't find any matching book. Here are some random images:
+    </p>
+    <div>
+      {% for _ in range(5) %}
+      <img
+        src="{{ url_for('static', filename='random_image.jpg') }}"
+        alt="Random Image"
+      />
+      {% endfor %}
+    </div>
+  </body>
+</html>
